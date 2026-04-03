@@ -27,34 +27,7 @@ async function callApi(method, data = {}) {
 }
 
 // Кнопки
-document.getElementById('getSettingsBtn').addEventListener('click', () => callApi('getSettings'));
-document.getElementById('getStateBtn').addEventListener('click', () => callApi('getStateInstance'));
-
-document.getElementById('sendMessageBtn').addEventListener('click', () => {
-  const chatId = prompt('Введите chatId (номер телефона в международном формате или числовой ID Telegram-чата)');
-  const message = prompt('Введите сообщение');
-  if (!chatId) {
-    apiResponse.value = 'Ошибка: chatId обязателен!';
-    return;
-  }
-  callApi('sendMessage', { chatId, message });
-});
 
 
-document.getElementById('sendFileBtn').addEventListener('click', () => {
-  const chatId = prompt('Введите chatId (номер телефона в международном формате или числовой ID Telegram-чата)');
-  const urlFile = prompt('Введите ссылку на файл (urlFile)');
-  const fileName = prompt('Введите имя файла (например, photo.jpg)');
-  const caption = prompt('Введите подпись к файлу (необязательно)');
-  if (!chatId) {
-    apiResponse.value = 'Ошибка: chatId обязателен!';
-    return;
-  }
-  if (!urlFile || !fileName) {
-    apiResponse.value = 'Ошибка: urlFile и fileName обязательны!';
-    return;
-  }
-  const payload = { chatId, urlFile, fileName };
-  if (caption) payload.caption = caption;
-  callApi('sendFileByUrl', payload);
-});
+
+// ...обработчики кнопок теперь добавлены ниже по новой разметке...

@@ -1,34 +1,86 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<title>GREEN-API Test</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>API Interface</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      gap: 20px;
+      padding: 20px;
+    }
+    .left-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 300px;
+    }
+    .left-panel input, .left-panel button, .left-panel textarea {
+      padding: 8px;
+      font-size: 14px;
+    }
+    .right-panel {
+      flex-grow: 1;
+      border: 1px solid #ccc;
+      padding: 10px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      background: #f9f9f9;
+      min-width: 320px;
+      min-height: 200px;
+    }
+    .section {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 15px;
+    }
+    textarea[readonly] {
+      background: #f3f3f3;
+      resize: none;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>GREEN-API Dashboard</h1>
 
-    <div class="credentials">
-      <label>ID Instance:</label>
-      <input type="text" id="idInstance" placeholder="Введите idInstance">
-      <label>API Token:</label>
-      <input type="text" id="apiToken" placeholder="Введите ApiTokenInstance">
-    </div>
+<div class="left-panel">
 
-    <div class="buttons">
-      <button id="getSettingsBtn">getSettings</button>
-      <button id="getStateBtn">getStateInstance</button>
-      <button id="sendMessageBtn">sendMessage</button>
-      <button id="sendFileBtn">sendFileByUrl</button>
-    </div>
-
-    <div class="output">
-      <label>Ответ API:</label>
-      <textarea id="apiResponse" readonly></textarea>
-    </div>
+  <!-- Токены -->
+  <div class="section">
+    <input type="text" placeholder="IdInstance" id="idInstance">
+    <input type="text" placeholder="ApiTokenInstance" id="apiTokenInstance">
   </div>
 
-  <script src="app.js"></script>
+  <!-- Кнопки получения настроек -->
+  <div class="section">
+    <button id="getSettings">getSettings</button>
+    <button id="getStatusInstance">getStatusInstance</button>
+  </div>
+
+  <!-- Отправка текста -->
+  <div class="section">
+    <input type="text" placeholder="Номер телефона" id="phoneNumberText" value="77771234567">
+    <textarea placeholder="Сообщение" id="messageText" rows="3">Hello World!</textarea>
+    <button id="sendMessage">sendMessage</button>
+  </div>
+
+  <!-- Отправка файла по URL -->
+  <div class="section">
+    <input type="text" placeholder="Номер телефона" id="phoneNumberFile" value="77771234567">
+    <input type="text" placeholder="URL файла" id="fileUrl" value="https://my.site.com/img/horse.png">
+    <button id="sendFileByUrl">sendFileByUrl</button>
+  </div>
+
+</div>
+
+<!-- Правая панель — вывод ответа -->
+<div class="right-panel">
+  <div>Ответ:</div>
+  <textarea id="apiResponse" readonly rows="16" style="width:100%;border:none;background:transparent;outline:none;resize:none;"></textarea>
+</div>
+
+<script src="app.js"></script>
+
 </body>
 </html>
